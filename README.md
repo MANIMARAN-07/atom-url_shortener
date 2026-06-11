@@ -1,47 +1,41 @@
-# 🔗 Sniplink — Smart URL Shortener (Hackathon Submission)
+# Atom URL Shortener
 
-A modern, full-stack URL shortener application built with React, NestJS, and MongoDB.
+Atom is a robust, full-stack URL shortening service engineered for high performance, ease of use, and detailed analytics tracking. Designed with a minimalistic, monochromatic user interface, it provides a seamless developer and end-user experience.
 
-## 🏗️ Architecture
+## Architecture Overview
 
-- **Frontend**: React + Vite
-- **Backend API**: NestJS (TypeScript)
-- **Database**: MongoDB (via Mongoose)
-- **Authentication**: JWT & bcryptjs
-- **Short Codes**: NanoID
+This project is structured as a monorepo containing distinct frontend and backend applications:
 
-### Data Flow
-1. User authenticates via `/api/auth/login`.
-2. Client receives a JWT and stores it.
-3. Authenticated requests create short URLs via `/api/urls`.
-4. Public users navigate to `/:code` which redirects them.
-5. The redirect controller asynchronously tracks the click in the Analytics collection.
+- **Frontend:** Built with React and Vite. The interface emphasizes typography-driven, minimalistic design (utilizing Lekton, Oswald, and Silkscreen fonts).
+- **Backend:** Powered by NestJS. It handles API routing, JWT-based authentication, URL redirection logic, and analytics aggregation. 
+- **Database:** Uses MongoDB (via Mongoose) for persistent storage of users, URLs, and click analytics. A local in-memory MongoDB server is supported for zero-configuration development environments.
 
-## 🚀 Setup Instructions
+## Core Features
+
+- **Authentication:** Secure user registration and login utilizing JWT strategies.
+- **Link Management:** Shorten long URLs, apply custom aliases, and organize links with titles.
+- **Analytics:** Track total clicks and access historical usage statistics for each shortened link.
+- **Optimized Redirection:** Dedicated backend endpoints for fast HTTP 301 redirects.
+
+## Getting Started
 
 ### Prerequisites
-- Node.js (v18+)
-- MongoDB (running locally on port 27017 or update `MONGODB_URI` in `.env`)
+- Node.js (v18 or higher)
+- npm or yarn
+- MongoDB instance (optional, falls back to mongodb-memory-server for local testing)
 
 ### Backend Setup
-```bash
-cd backend
-npm install
-npm install @nestjs/mongoose mongoose @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs nanoid
-npm run start:dev
-```
+1. Navigate to the `backend` directory.
+2. Install dependencies: `npm install`
+3. Start the NestJS server: `npm run start:dev`
 
 ### Frontend Setup
-```bash
-cd frontend
-npm install
-npm install react-router-dom axios recharts lucide-react react-hook-form
-npm run dev
-```
+1. Navigate to the `frontend` directory.
+2. Install dependencies: `npm install`
+3. Start the Vite development server: `npm run dev`
 
-## 🎥 Walkthrough Video
-[Link to Loom/YouTube Video here]
+The frontend will be available at `http://localhost:5173` and the backend API at `http://localhost:3000`.
 
-## 📊 Sample Output
-- **Short URL generation:** `POST /api/urls` -> Returns `{ "shortCode": "xA9b2P", "originalUrl": "https://example.com" }`
-- **Analytics aggregation:** `GET /api/analytics/:id` -> Returns click counts and referrers.
+## License
+
+This project is open source and available under the MIT License.
