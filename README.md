@@ -39,3 +39,6 @@ The frontend will be available at `http://localhost:5173` and the backend API at
 ## License
 
 This project is open source and available under the MIT License.
+
+---
+This project is a part of a hackathon run by https://katomaran.com

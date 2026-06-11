@@ -126,9 +126,22 @@ const Dashboard = () => {
                 {urls.map((url) => (
                   <tr key={url._id}>
                     <td>
-                      <a href={`http://localhost:3000/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="link font-bold">
-                        /{url.shortCode}
-                      </a>
+                      <div className="flex items-center" style={{ gap: '0.5rem' }}>
+                        <a href={`http://localhost:3000/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="link font-bold">
+                          /{url.shortCode}
+                        </a>
+                        <button 
+                          onClick={() => {
+                            navigator.clipboard.writeText(`http://localhost:3000/${url.shortCode}`);
+                            alert('Copied to clipboard!');
+                          }}
+                          className="text-gray-400 hover:text-white"
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.7rem', textTransform: 'uppercase', fontFamily: 'Oswald' }}
+                          title="Copy to clipboard"
+                        >
+                          Copy
+                        </button>
+                      </div>
                     </td>
                     <td style={{ maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
