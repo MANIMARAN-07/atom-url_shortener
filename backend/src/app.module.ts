@@ -1,0 +1,32 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { UrlsModule } from './urls/urls.module';
+import { AnalyticsModule } from './analytics/analytics.module';
+
+import { MongoMemoryServer } from 'mongodb-memory-server';
+
+@Module({
+  imports: [
+    MongooseModule.forRootAsync({
+      useFactory: async () => {
+        const mongod = await MongoMemoryServer.create();
+        const uri = mongod.getUri();
+        console.log(`In-memory MongoDB started at: ${uri}`);
+        return {
+          uri: uri,
+        };
+      },
+    }),
+    AuthModule,
+    UsersModule,
+    UrlsModule,
+    AnalyticsModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
