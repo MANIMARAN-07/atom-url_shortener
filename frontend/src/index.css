@@ -13,8 +13,7 @@
   --border-radius: 2px; /* Sharper */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+html.dark {
     --bg-dark: #0a0a0a;
     --bg-card: #121212;
     --text-main: #ededed;
@@ -24,7 +23,6 @@
     --border: #262626;
     --error-bg: #1a1a1a;
     --error-text: #ededed;
-  }
 }
 
 * {
