@@ -71,10 +71,10 @@ const Analytics = () => {
             {chartData.length > 0 ? (
               <ResponsiveContainer>
                 <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="date" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                  <XAxis dataKey="date" stroke="var(--text-muted)" />
+                  <YAxis stroke="var(--text-muted)" />
+                  <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--border-radius)', color: 'var(--text-main)' }} itemStyle={{ color: 'var(--text-main)' }} />
                   <Line type="monotone" dataKey="clicks" stroke="var(--text-main)" strokeWidth={3} dot={{ r: 4, fill: 'var(--text-main)' }} activeDot={{ r: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
