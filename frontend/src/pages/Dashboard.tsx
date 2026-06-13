@@ -3,7 +3,6 @@ import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import ThemeToggle from '../components/ThemeToggle';
-import { QRCodeSVG } from 'qrcode.react';
 
 interface Url {
   _id: string;
@@ -19,7 +18,6 @@ const Dashboard = () => {
   const [newUrl, setNewUrl] = useState('');
   const [alias, setAlias] = useState('');
   const [title, setTitle] = useState('');
-  const [qrModalUrl, setQrModalUrl] = useState<string | null>(null);
   const { logout } = useAuth();
   const [error, setError] = useState('');
 
@@ -145,14 +143,6 @@ const Dashboard = () => {
                         >
                           Copy
                         </button>
-                        <button 
-                          onClick={() => setQrModalUrl(`http://localhost:3000/${url.shortCode}`)}
-                          className="text-gray-400 hover:text-white"
-                          style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.7rem', textTransform: 'uppercase', fontFamily: 'Oswald' }}
-                          title="Show QR Code"
-                        >
-                          QR
-                        </button>
                       </div>
                     </td>
                     <td style={{ maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -186,20 +176,6 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
-
-      {qrModalUrl && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }} onClick={() => setQrModalUrl(null)}>
-          <div className="card" onClick={e => e.stopPropagation()} style={{ textAlign: 'center' }}>
-            <h2 className="text-xl font-bold mb-4">Scan QR Code</h2>
-            <div style={{ background: 'white', padding: '1rem', borderRadius: '8px', display: 'inline-block' }}>
-              <QRCodeSVG value={qrModalUrl} size={200} />
-            </div>
-            <div className="mt-6">
-              <button onClick={() => setQrModalUrl(null)} className="btn-primary">Close</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

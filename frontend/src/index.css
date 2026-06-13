@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Lekton:wght@400;700&family=Oswald:wght@400;600;700&family=Silkscreen:wght@400;700&display=swap');
 
 :root {
-  --bg-dark: #fafafa;
+  --bg-dark: #ffffff;
   --bg-card: #ffffff;
-  --text-main: #111111;
+  --text-main: #000000;
   --text-muted: #666666;
-  --primary: #111111;
+  --primary: #000000;
   --primary-hover: #333333;
   --border: #e5e5e5;
   --error-bg: #f9f9f9;
-  --error-text: #111111;
+  --error-text: #000000;
   --border-radius: 2px; /* Sharper */
 }
 
-html.dark {
+@media (prefers-color-scheme: dark) {
+  :root {
     --bg-dark: #0a0a0a;
     --bg-card: #121212;
     --text-main: #ededed;
@@ -23,6 +24,7 @@ html.dark {
     --border: #262626;
     --error-bg: #1a1a1a;
     --error-text: #ededed;
+  }
 }
 
 * {

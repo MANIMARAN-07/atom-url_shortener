@@ -27,7 +27,6 @@
     "@nestjs/mongoose": "^11.0.4",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
-    "@nestjs/serve-static": "^5.0.5",
     "bcryptjs": "^3.0.3",
     "cache-manager": "^7.2.8",
     "mongodb-memory-server": "^11.2.0",
@@ -79,9 +78,6 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "transformIgnorePatterns": [
-      "/node_modules/(?!nanoid/.*)"
-    ]
+    "testEnvironment": "node"
   }
 }

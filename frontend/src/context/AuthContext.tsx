@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
