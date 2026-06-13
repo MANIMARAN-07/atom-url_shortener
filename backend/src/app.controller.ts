@@ -1,4 +1,5 @@
-import { Controller, Get, Param, Res, Req, NotFoundException, Inject } from '@nestjs/common';
+import { Controller, Get, Param, Res, Req, NotFoundException, Inject, Next } from '@nestjs/common';
+import type { NextFunction } from 'express';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import type { Cache } from 'cache-manager';
 import { UrlsService } from './urls/urls.service';
@@ -13,7 +14,12 @@ export class AppController {
   ) {}
 
   @Get(':code')
-  async redirect(@Param('code') code: string, @Req() req: any, @Res() res: any) {
+  async redirect(@Param('code') code: string, @Req() req: any, @Res() res: any, @Next() next: NextFunction) {
+    const frontendRoutes = ['dashboard', 'login', 'signup', 'analytics', 'assets'];
+    if (frontendRoutes.includes(code)) {
+      return next();
+    }
+
     try {
       const cacheKey = `url:${code}`;
       let originalUrl = await this.cacheManager.get<string>(cacheKey);
