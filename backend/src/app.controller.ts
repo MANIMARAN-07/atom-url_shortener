@@ -1,4 +1,6 @@
-import { Controller, Get, Param, Res, Req, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Param, Res, Req, NotFoundException, Inject } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 import { UrlsService } from './urls/urls.service';
 import { AnalyticsService } from './analytics/analytics.service';
 
@@ -6,13 +8,21 @@ import { AnalyticsService } from './analytics/analytics.service';
 export class AppController {
   constructor(
     private readonly urlsService: UrlsService,
-    private readonly analyticsService: AnalyticsService
+    private readonly analyticsService: AnalyticsService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache
   ) {}
 
   @Get(':code')
   async redirect(@Param('code') code: string, @Req() req: any, @Res() res: any) {
     try {
-      const url = await this.urlsService.findByShortCode(code);
+      const cacheKey = `url:${code}`;
+      let originalUrl = await this.cacheManager.get<string>(cacheKey);
+
+      if (!originalUrl) {
+        const url = await this.urlsService.findByShortCode(code);
+        originalUrl = url.originalUrl;
+        await this.cacheManager.set(cacheKey, originalUrl);
+      }
       
       // Async tracking (fire and forget)
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
@@ -21,7 +31,7 @@ export class AppController {
       
       this.analyticsService.trackClickAsync(code, ip as string, userAgent, referrer);
       
-      return res.redirect(302, url.originalUrl);
+      return res.redirect(301, originalUrl);
     } catch (err) {
       throw new NotFoundException('URL not found');
     }

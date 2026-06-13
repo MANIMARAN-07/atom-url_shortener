@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -11,6 +12,10 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 
 @Module({
   imports: [
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 300000,
+    }),
     MongooseModule.forRootAsync({
       useFactory: async () => {
         const mongod = await MongoMemoryServer.create();
