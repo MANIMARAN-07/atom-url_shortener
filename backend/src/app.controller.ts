@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Res, Req, NotFoundException, Inject } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { Cache } from 'cache-manager';
+import type { Cache } from 'cache-manager';
 import { UrlsService } from './urls/urls.service';
 import { AnalyticsService } from './analytics/analytics.service';
 
