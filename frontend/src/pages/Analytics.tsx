@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api/axios';
 import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../context/ThemeContext';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import UAParser from 'ua-parser-js';
+import { UAParser } from 'ua-parser-js';
 
 interface Click {
   _id: string;
@@ -113,7 +113,7 @@ const Analytics = () => {
                 <ResponsiveContainer>
                   <PieChart>
                     <Pie data={browserChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
-                      {browserChart.map((entry, index) => (
+                      {browserChart.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
@@ -132,7 +132,7 @@ const Analytics = () => {
                 <ResponsiveContainer>
                   <PieChart>
                     <Pie data={osChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
-                      {osChart.map((entry, index) => (
+                      {osChart.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
