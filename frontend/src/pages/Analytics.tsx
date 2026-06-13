@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api/axios';
+import ThemeToggle from '../components/ThemeToggle';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface Click {
@@ -50,7 +51,10 @@ const Analytics = () => {
     <div className="min-h-screen bg-gray-900">
       <header className="header">
         <Link to="/dashboard" className="logo">Atom</Link>
-        <Link to="/dashboard" className="link">Back to Dashboard</Link>
+        <div className="nav-links flex items-center">
+          <ThemeToggle />
+          <Link to="/dashboard" className="link" style={{ marginLeft: '1.5rem' }}>Back</Link>
+        </div>
       </header>
 
       <main className="main-content max-w-6xl mx-auto space-y-8">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import ThemeToggle from '../components/ThemeToggle';
 
 interface Url {
   _id: string;
@@ -61,7 +62,8 @@ const Dashboard = () => {
       <header className="header">
         <Link to="/dashboard" className="logo">Atom</Link>
         <div className="nav-links flex items-center">
-          <button onClick={logout} className="text-gray-400 hover:text-white" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+          <ThemeToggle />
+          <button onClick={logout} className="text-gray-400 hover:text-white" style={{ background: 'none', border: 'none', cursor: 'pointer', marginLeft: '1.5rem' }}>
             Logout
           </button>
         </div>
