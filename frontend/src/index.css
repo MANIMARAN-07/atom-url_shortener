@@ -5,8 +5,8 @@
   --bg-card: #ffffff;
   --text-main: #111111;
   --text-muted: #666666;
-  --primary: #5c81a6; /* Subtle aesthetic blue */
-  --primary-hover: #4a6b8c;
+  --primary: #111111;
+  --primary-hover: #333333;
   --border: #e5e5e5;
   --error-bg: #f9f9f9;
   --error-text: #111111;
@@ -19,8 +19,8 @@
     --bg-card: #121212;
     --text-main: #ededed;
     --text-muted: #888888;
-    --primary: #5c81a6; /* Subtle aesthetic blue */
-    --primary-hover: #7ea3cc;
+    --primary: #ededed;
+    --primary-hover: #ffffff;
     --border: #262626;
     --error-bg: #1a1a1a;
     --error-text: #ededed;
@@ -42,7 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6, label, th {
+h1, h2, h3, h4, h5, h6, label, th, button {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;

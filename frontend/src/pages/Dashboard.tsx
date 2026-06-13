@@ -156,7 +156,7 @@ const Dashboard = () => {
                     </td>
                     <td>
                       <Link to={`/analytics/${url._id}`} className="link" style={{ marginRight: '1rem' }}>Stats</Link>
-                      <button onClick={() => handleDelete(url._id)} className="text-red-500 hover:text-red-400" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                      <button onClick={() => handleDelete(url._id)} className="text-gray-400 hover:text-white" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                         Delete
                       </button>
                     </td>
