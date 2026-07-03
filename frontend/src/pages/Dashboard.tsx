@@ -14,6 +14,8 @@ interface Url {
 }
 
 const Dashboard = () => {
+  const baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:3000';
+
   const [urls, setUrls] = useState<Url[]>([]);
   const [newUrl, setNewUrl] = useState('');
   const [alias, setAlias] = useState('');
@@ -129,12 +131,12 @@ const Dashboard = () => {
                   <tr key={url._id}>
                     <td>
                       <div className="flex items-center" style={{ gap: '0.5rem' }}>
-                        <a href={`http://localhost:3000/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="link font-bold">
+                        <a href={`${baseUrl}/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="link font-bold">
                           /{url.shortCode}
                         </a>
                         <button 
                           onClick={() => {
-                            navigator.clipboard.writeText(`http://localhost:3000/${url.shortCode}`);
+                            navigator.clipboard.writeText(`${baseUrl}/${url.shortCode}`);
                             alert('Copied to clipboard!');
                           }}
                           className="text-gray-400 hover:text-white"
