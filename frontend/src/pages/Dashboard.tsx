@@ -129,12 +129,12 @@ const Dashboard = () => {
                   <tr key={url._id}>
                     <td>
                       <div className="flex items-center" style={{ gap: '0.5rem' }}>
-                        <a href={`https://3b009e4b436817.lhr.life/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="link font-bold">
+                        <a href={`http://localhost:3000/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="link font-bold">
                           /{url.shortCode}
                         </a>
                         <button 
                           onClick={() => {
-                            navigator.clipboard.writeText(`https://3b009e4b436817.lhr.life/${url.shortCode}`);
+                            navigator.clipboard.writeText(`http://localhost:3000/${url.shortCode}`);
                             alert('Copied to clipboard!');
                           }}
                           className="text-gray-400 hover:text-white"
