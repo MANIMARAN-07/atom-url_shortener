@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://3170c9929c3695.lhr.life/api',
+  baseURL: 'https://cd8db0405bbc42.lhr.life/api',
   headers: {
     'Content-Type': 'application/json',
     'Bypass-Tunnel-Reminder': 'true'
